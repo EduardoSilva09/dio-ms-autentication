@@ -1,0 +1,14 @@
+{
+  "name": "dio-ms-autentication",
+  "version": "1.0.0",
+  "description": "Microservice criado no curso da DIO.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eduardo Silva Feitosa",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
