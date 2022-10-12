@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express'
-import {StatusCodes} from 'http-status-codes'
+import { StatusCodes } from 'http-status-codes'
 
 // get  /users
 // get  /users/:uuid
@@ -21,5 +21,10 @@ userRoute.get(
     res.sendStatus(StatusCodes.OK)
   },
 )
+
+userRoute.post('/users', (req: Request, res: Response, next: NextFunction) => {
+  const newUser = req.body
+  res.status(StatusCodes.CREATED).send(newUser)
+})
 
 export default userRoute
