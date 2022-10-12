@@ -3,6 +3,7 @@ import userRoute from './routes/users.routes'
 
 const app = express()
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/status', (req: Request, res: Response, next: NextFunction) => {
   res.send({ foo: 'bar' })
