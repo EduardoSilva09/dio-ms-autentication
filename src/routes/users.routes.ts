@@ -27,4 +27,14 @@ userRoute.post('/users', (req: Request, res: Response, next: NextFunction) => {
   res.status(StatusCodes.CREATED).send(newUser)
 })
 
+userRoute.put(
+  '/users/uuid',
+  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    const uuid = req.params.uuid
+    const modifiedUSer = req.body
+    console.log(modifiedUSer)
+    res.status(StatusCodes.OK).send({ uuid })
+  },
+)
+
 export default userRoute
