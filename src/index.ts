@@ -1,3 +1,4 @@
+require('dotenv').config()
 import express from 'express'
 import statusRoute from './routes/status.routes'
 import userRoute from './routes/users.routes'
