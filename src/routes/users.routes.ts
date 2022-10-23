@@ -10,16 +10,20 @@ import userRepository from '../repositories/user.repository'
 
 const userRoute = Router()
 
-userRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
-  const users = await userRepository.findAllUsers()
-  res.send(users)
-})
+userRoute.get(
+  '/users',
+  async (req: Request, res: Response, next: NextFunction) => {
+    const users = await userRepository.findAllUsers()
+    res.send(users)
+  },
+)
 
 userRoute.get(
-  '/users:uuid',
-  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+  '/users/:uuid',
+  async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
     const uuid = req.params.uuid
-    res.sendStatus(StatusCodes.OK)
+    const user = await userRepository.findById(uuid)
+    res.status(StatusCodes.OK).send(user)
   },
 )
 
