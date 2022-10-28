@@ -18,7 +18,7 @@ userRoute.get(
       const users = await userRepository.findAllUsers()
       res.send(users)
     } catch (error) {
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      next(error)
     }
   },
 )
@@ -31,11 +31,7 @@ userRoute.get(
       const user = await userRepository.findById(uuid)
       res.status(StatusCodes.OK).send(user)
     } catch (error) {
-      if (error instanceof DatabaseError) {
-        res.sendStatus(StatusCodes.BAD_REQUEST)
-      } else {
-        res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
-      }
+      next(error)
     }
   },
 )
@@ -48,7 +44,7 @@ userRoute.post(
       const uuid = await userRepository.create(newUser)
       res.status(StatusCodes.CREATED).send(uuid)
     } catch (error) {
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      next(error)
     }
   },
 )
@@ -64,7 +60,7 @@ userRoute.put(
       await userRepository.update(modifiedUser)
       res.sendStatus(StatusCodes.OK)
     } catch (error) {
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      next(error)
     }
   },
 )
@@ -78,7 +74,7 @@ userRoute.delete(
       await userRepository.remove(uuid)
       res.sendStatus(StatusCodes.OK)
     } catch (error) {
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      next(error)
     }
   },
 )
